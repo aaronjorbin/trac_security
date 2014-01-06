@@ -2,6 +2,7 @@
 window.wp = window.wp || {};
 
 (function($) {
+	var submit = $( 'input[type="submit"]' );
 	wp.trac_security = {
 		badwords : [
 			'sql', 'trojan', 'rce', 'permissions', 'exploit', 'exploits', 'csrf', 'xss', 'sqli',
@@ -26,15 +27,17 @@ window.wp = window.wp || {};
 
 	function show_box(){
 		// We have a potential problem here
-		$('input[name="submit"]').prop('disabled', true);
-		if ( $('#sec_question').length !== 0){
+		submit.prop( 'disabled', true );
+		if ( $( '#security-question' ).length !== 0 ){
 			// We've already created the checkbox
-			$('#sec_question').show();
+			$( '#security-question' ).show();
 		} else {
 			// We need to add the checkbox
-			$('.buttons').before('<p id="sec_question"><label><input type="checkbox" name="sec_question" id="idontcare" />' +
-				'&nbsp;I am not reporting a security issue</label></p>');
+			$( '.buttons' ).before( '<p id="security-question"><label><input type="checkbox" name="sec_question" />' +
+				'&nbsp;I am <strong>not</strong> reporting a security issue</label>' +
+				' &mdash; <a href="http://make.wordpress.org/core/handbook/reporting-security-vulnerabilities/">report security issues to security@wordpress.org</a></p>' );
 		}
+
 	}
 
 	function hide_box(){
@@ -52,13 +55,9 @@ window.wp = window.wp || {};
 		}
 	});
 
-
-	jQuery('#propertyform').on('change', '#idontcare', function(){
-		if ( $(this).is(':checked') ) {
-			$('input[name="submit"]').prop('disabled', false);
-		} else {
-			$('input[name="submit"]').prop('disabled', true);
-		}
+	$( '#propertyform' ).on( 'change', '#security-question input', function() {
+		submit.prop( 'disabled', ! $(this).is( ':checked' ) );
 	});
+
 	
 }(jQuery));
