@@ -13,8 +13,8 @@ module.exports = function(grunt) {
 			},
 			tests: {
 				src: [
-					'test/qunit/**/*.js',
-					'!test/qunit/vendor/qunit.js'
+					'test/**/*.js',
+					'!test/vendor/**/*.js'
 				],
 				options: grunt.file.readJSON('test/.jshintrc')
 			},
