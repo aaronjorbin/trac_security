@@ -1,0 +1,13 @@
+{
+  "name": "trac_security",
+  "version": "0.1.0",
+  "description": "Make it harder for users to report security bugs via trac",
+  "author": "Aaron jorbin",
+  "license": "GPLv2 or later",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-jshint": "~0.7.0",
+    "matchdep": "~0.1.2"
+  }
+}
